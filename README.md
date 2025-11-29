@@ -13,7 +13,7 @@ A secure and scalable authentication & authorization system built with Spring Bo
 🔓 Logout functionality with token invalidation
 💾 User data stored & managed using MySQL
 
-👥 Supports 10,000+ users with high reliability (~99% session reliability)
+👥 Supports 10,000+ users with high reliability 99% session reliability
 
 🛠️ Tech Stack
 Component	Technology
