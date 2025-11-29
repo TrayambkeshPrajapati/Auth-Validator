@@ -70,9 +70,10 @@ public class SecurityConfig {
     private CorsConfigurationSource corsConfigrationSource() {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowedOrigins(List.of("http://localhost:5173"));
-        config.setAllowedMethods(List.of("GET","PUT","POST","DELETE"));
-        config.setAllowedHeaders(List.of("Authorization","Content-type"));
+        config.setAllowedMethods(List.of("GET","PUT","POST","DELETE","OPTIONS")); // ✅ add OPTIONS
+        config.setAllowedHeaders(List.of("Authorization","Content-Type")); // ✅ correct header spelling
         config.setAllowCredentials(true);
+        config.setExposedHeaders(List.of("Authorization")); // ✅ optional but good for JWT
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**",config);
         return source;

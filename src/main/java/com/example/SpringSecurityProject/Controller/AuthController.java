@@ -6,6 +6,7 @@ import com.example.SpringSecurityProject.Io.ResetPasswordRequest;
 import com.example.SpringSecurityProject.Service.AppUserDetailsService;
 import com.example.SpringSecurityProject.Service.ProfileServiceImplementation;
 import com.example.SpringSecurityProject.Utility.JwtUtil;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -115,5 +116,18 @@ public class AuthController {
         }catch (Exception e){
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,e.getMessage());
         }
+    }
+    @PostMapping("/logout")
+    public ResponseEntity<?> Logout(HttpServletResponse response){
+        ResponseCookie cookie = ResponseCookie.from("jwt","")
+                .httpOnly(true)
+                .secure(true)
+                .path("/")
+                .maxAge(0)
+                .sameSite("Strict")
+                .build();
+        return ResponseEntity.ok()
+                .header(HttpHeaders.SET_COOKIE,cookie.toString())
+                .body("Logged Out Successfully");
     }
 }
